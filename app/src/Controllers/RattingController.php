@@ -2,34 +2,65 @@
 
 namespace App\Controllers;
 
-use App\Models\Ratting;
 use App\Resource\JsonResource;
+use App\Services\RattingService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 class RattingController
 {
+    public RattingService $rattingService;
+
+    public function __construct(RattingService $rattingService)
+    {
+        $this->rattingService = $rattingService;
+    }
     
+    /**
+     * Load all ratting grouped by slug with total ratting
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param [type] $args
+     * @return void
+     */
     public function index(Request $request, Response $response, $args)
     {
-        return JsonResource::handle($response, Ratting::all());
+        return JsonResource::handle($response, $this->rattingService->index());
     }
 
+    /**
+     * Get single ratting group by slag distinct ip and total rate
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
     public function ratting(Request $request, Response $response)
     {
-        return JsonResource::handle($response, Ratting::all());
+        return JsonResource::handle($response, $this->rattingService->ratting($request));
     }
 
+    /**
+     * Store rating by slug
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
     public function store(Request $request, Response $response)
     {
-        /**
-         * Check request ip address exist in db
-         * In not store ratting else throw http exeption
-         */
-        return JsonResource::handle($response, Ratting::all());
+        return JsonResource::handle($response, $this->rattingService->store($request));
     }
 
+    /**
+     * Remove ratting if slug and ip are same
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
     public function remove(Request $request, Response $response)
     {
-        return JsonResource::handle($response, Ratting::all());
+        return JsonResource::handle($response, $this->rattingService->remove($request));
     }
 }

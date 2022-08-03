@@ -28,9 +28,9 @@ class SlimRouter
 
         $app->group('', function () use ($app) {
             $app->get('/ratting', RattingController::class . ':index');
-            $app->get('/ratting/:id', RattingController::class . ':ratting');
-            $app->post('/§ratting', RattingController::class . ':store');
-            $app->delete('/ratting', RattingController::class . ':remove');
+            $app->get('/ratting/{slug}/{ip}', RattingController::class . ':ratting');
+            $app->post('/ratting', RattingController::class . ':store');
+            $app->delete('/ratting/{slug}/{ip}', RattingController::class . ':remove');
         })->add(new AuthMiddleware());
     }
 }

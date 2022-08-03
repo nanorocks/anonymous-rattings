@@ -19,6 +19,10 @@ class AppProvider
      */
     public static function start(App $app, Container $container, array $config)
     {
+        $app->addRoutingMiddleware();
+
+        $container->set('config', $config);
+
         $app->add(new CorsMiddleware());
 
         ConsoleProvider::handle($app, $container);
@@ -28,6 +32,8 @@ class AppProvider
         DiProvider::handle($container);
 
         SlimRouter::handle($app);
+
+        $app->addErrorMiddleware(false, false, false);
 
         $app->run();
     }

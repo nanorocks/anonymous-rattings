@@ -10,6 +10,6 @@ class ConsoleProvider
 {
     public static function handle(App $app, Container $container)
     {
-        
+        // your code here ...
     }
 }

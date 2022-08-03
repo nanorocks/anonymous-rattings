@@ -22,9 +22,6 @@ class DatabaseProvider
 
         $capsule->addConnection($config['db']);
 
-        // Set the event dispatcher used by Eloquent models... (optional)
-        // $capsule->setEventDispatcher(new Dispatcher(new IlluminateContainer));
-
         $capsule->setAsGlobal();
 
         $capsule->bootEloquent();
