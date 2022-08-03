@@ -9,6 +9,13 @@ use Illuminate\Container\Container as IlluminateContainer;
 
 class DatabaseProvider
 {
+    /**
+     * Db eloqent orm
+     *
+     * @param Container $container
+     * @param array $config
+     * @return void
+     */
     public static function handle(Container $container, array $config)
     {
         $capsule = new Manager();
@@ -18,12 +25,10 @@ class DatabaseProvider
         // Set the event dispatcher used by Eloquent models... (optional)
         // $capsule->setEventDispatcher(new Dispatcher(new IlluminateContainer));
 
-        // $capsule->setAsGlobal();
+        $capsule->setAsGlobal();
 
         $capsule->bootEloquent();
 
-        $container->set('orm', function() use ($capsule)  {
-            return $capsule;
-        });
+        $container->set('orm', $capsule);
     }
 }

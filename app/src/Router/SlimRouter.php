@@ -13,6 +13,12 @@ use Slim\App as SlimApp;
 
 class SlimRouter
 {
+    /**
+     * Router
+     *
+     * @param SlimApp $app
+     * @return void
+     */
     public static function handle(SlimApp $app)
     {
         $app->get('/', function (Request $request, Response $response, $args) {

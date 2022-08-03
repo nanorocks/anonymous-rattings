@@ -2,31 +2,21 @@
 
 namespace App\Controllers;
 
-use DI\Container;
+use App\Models\Ratting;
+use App\Resource\JsonResource;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-
 class RattingController
 {
-    public $container;
-
-    public function __construct(Container $container)
-    {
-        $this->container = $container;
-    }
-
+    
     public function index(Request $request, Response $response, $args)
     {
-        print_r($this->container->get('orm'));
-        die();
-        $response->getBody()->write("Hello ratting!");
-        return $response;
+        return JsonResource::handle($response, Ratting::all());
     }
 
     public function ratting(Request $request, Response $response)
     {
-        $response->getBody()->write("Hello world!");
-        return $response;
+        return JsonResource::handle($response, Ratting::all());
     }
 
     public function store(Request $request, Response $response)
@@ -35,13 +25,11 @@ class RattingController
          * Check request ip address exist in db
          * In not store ratting else throw http exeption
          */
-        $response->getBody()->write("Hello world!");
-        return $response;
+        return JsonResource::handle($response, Ratting::all());
     }
 
     public function remove(Request $request, Response $response)
     {
-        $response->getBody()->write("Hello world!");
-        return $response;
+        return JsonResource::handle($response, Ratting::all());
     }
 }
