@@ -1,20 +1,19 @@
 <?php
 
+use DI\Container;
+use Slim\Factory\AppFactory;
+use App\Providers\AppProvider;
+
 require __DIR__ . './../vendor/autoload.php';
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+$config = require_once __DIR__ . './../src/config.php';
+
+ini_set('display_errors', $config['show_errors']);
+ini_set('display_startup_errors', $config['show_errors']);
 error_reporting(E_ALL);
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Factory\AppFactory;
+$container = new Container();
 
-$app = AppFactory::create();
+AppFactory::setContainer($container);
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
-    return $response;
-});
-
-$app->run();
+AppProvider::start(AppFactory::create(), $container, $config);
