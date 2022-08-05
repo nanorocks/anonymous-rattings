@@ -19,18 +19,19 @@ class SlimRouter
      * @param SlimApp $app
      * @return void
      */
-    public static function handle(SlimApp $app)
+    public static function handle(SlimApp $app, array $config)
     {
         $app->get('/', function (Request $request, Response $response, $args) {
-            $response->getBody()->write("Slim PHP v4!");
+            $response->getBody()->write("SaaS for Rattings powered by Slim PHP v4!");
             return $response;
         });
 
         $app->group('', function () use ($app) {
             $app->get('/ratting', RattingController::class . ':index');
-            $app->get('/ratting/{slug}/{ip}', RattingController::class . ':ratting');
+            $app->get('/ratting/{slug}', RattingController::class . ':ratting');
             $app->post('/ratting', RattingController::class . ':store');
-            $app->delete('/ratting/{slug}/{ip}', RattingController::class . ':remove');
-        })->add(new AuthMiddleware());
+            $app->put('/ratting', RattingController::class . ':update');
+            $app->delete('/ratting/{slug}', RattingController::class . ':remove');
+        })->add(new AuthMiddleware($config));
     }
 }

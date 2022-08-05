@@ -12,6 +12,8 @@
         "illuminate/events": "^8.83",
         "symfony/console": "^5.4",
         "carbon-cli/carbon-cli": "^1.2",
-        "monolog/monolog": "^2.8"
+        "monolog/monolog": "^2.8",
+        "fakerphp/faker": "^1.20",
+        "rakit/validation": "^1.4"
     }
 }

@@ -15,9 +15,9 @@ class JsonResource
      */
     public static function handle(Response $response, $playload)
     {
-        $response->getBody()->write(json_encode($playload));
-        $response->withHeader('Content-Type', 'application/json');
-
+        header("Content-Type: application/json");
+        $response->getBody()->write(json_encode($playload, true));
+        
         return $response;
     }
 }

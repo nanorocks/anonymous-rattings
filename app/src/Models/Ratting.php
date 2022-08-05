@@ -11,4 +11,10 @@ class Ratting extends Eloquent
     public const IP = 'ip';
 
     public const RATE = 'rate';
+
+    protected $fillable = [
+        self::SLUG,
+        self::IP,
+        self::RATE,
+    ];
 }

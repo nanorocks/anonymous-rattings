@@ -6,12 +6,17 @@ use DI\Container;
 use Exception;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
-use Slim\Exception\HttpException;
-use Slim\Exception\HttpForbiddenException;
 use Slim\Psr7\Response;
-
+use App\Exceptions\HttpException;
 class AuthMiddleware
 {
+    public array $config;
+
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * Auth service token validator
      *
@@ -26,13 +31,13 @@ class AuthMiddleware
 
             $token = explode(' ', $header)[1];
 
-            $accessToken = 'f21a44635709c17ef568f177928565e1'; // get from config
+            $accessToken = $this->config['accessToken'];
 
             if ($token !== $accessToken) {
-                throw new HttpForbiddenException($request);
+                throw HttpException::handle(HttpException::FORBIDDEN, $request);
             }
         } catch (Exception $e) {
-            throw new HttpForbiddenException($request);
+            throw HttpException::handle(HttpException::FORBIDDEN, $request);
         }
 
         $response = $handler->handle($request);

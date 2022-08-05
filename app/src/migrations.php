@@ -14,8 +14,6 @@ DatabaseProvider::handle($container, $config);
 
 $manager = $container->get('orm');
 
-$manager = $this->getDoctrine()->getManager();
-
 // Ratting
 $manager::schema()->create('rattings', function ($table) {
     $table->increments('id');

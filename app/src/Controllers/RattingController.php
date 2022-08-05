@@ -35,9 +35,9 @@ class RattingController
      * @param Response $response
      * @return void
      */
-    public function ratting(Request $request, Response $response)
+    public function ratting(Request $request, Response $response, $args)
     {
-        return JsonResource::handle($response, $this->rattingService->ratting($request));
+        return JsonResource::handle($response, $this->rattingService->ratting($request, $args));
     }
 
     /**
@@ -53,14 +53,26 @@ class RattingController
     }
 
     /**
+     * Update rate by slug and ip
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
+    public function update(Request $request, Response $response)
+    {
+        return JsonResource::handle($response, $this->rattingService->update($request));
+    }
+
+    /**
      * Remove ratting if slug and ip are same
      *
      * @param Request $request
      * @param Response $response
      * @return void
      */
-    public function remove(Request $request, Response $response)
+    public function remove(Request $request, Response $response, $args)
     {
-        return JsonResource::handle($response, $this->rattingService->remove($request));
+        return JsonResource::handle($response, $this->rattingService->remove($request, $args));
     }
 }

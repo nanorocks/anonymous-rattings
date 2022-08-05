@@ -21,8 +21,7 @@ class CorsMiddleware
         $response = $handler->handle($request);
         $existingContent = (string) $response->getBody();
     
-        // $response = new Response();
-        // $response->getBody()->write('BEFORE CORS' . $existingContent);
+        // your code here ...
     
         return $response;
     }
