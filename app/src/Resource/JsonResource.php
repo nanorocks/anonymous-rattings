@@ -17,7 +17,7 @@ class JsonResource
     {
         header("Content-Type: application/json");
         $response->getBody()->write(json_encode($playload, true));
-        
+
         return $response;
     }
 }

@@ -6,6 +6,7 @@ use App\Resource\JsonResource;
 use App\Services\RattingService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+
 class RattingController
 {
     public RattingService $rattingService;
@@ -14,7 +15,7 @@ class RattingController
     {
         $this->rattingService = $rattingService;
     }
-    
+
     /**
      * Load all ratting grouped by slug with total ratting
      *

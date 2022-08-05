@@ -12,7 +12,7 @@ class LoggerProvider
     {
         $log = new Logger($config['appName']);
         $log->pushHandler(new StreamHandler($config['logger']['path']));
-        
+
         $container->set('logger', $log);
     }
 }

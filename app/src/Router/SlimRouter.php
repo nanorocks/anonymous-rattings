@@ -2,14 +2,11 @@
 
 namespace App\Router;
 
-
-
 use App\Middlewares\AuthMiddleware;
 use App\Controllers\RattingController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App as SlimApp;
-
 
 class SlimRouter
 {

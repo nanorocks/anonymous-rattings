@@ -1,1 +1,26 @@
 # add-ratting-saas
+
+### PHP CS Fixer
+Assuming you installed PHP CS Fixer as instructed above, you can run the following command to fix the files PHP files in the src directory:
+
+$ tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src
+
+### Docker devbox
+The project is build on top of docker devbox so, all you need is to have docker desktop installed on you pc and then you can navigate to root to run: 
+
+docker-compose up -d | For starting the devbox
+
+docker-compose down | To clean up all containers
+
+### Project access
+
+- Project is running on http://localhost:80
+- Db client is running on http://localhost:54320
+
+Db creating for project
+- go to http://localhost:54320
+- set provider Mysql
+- set username root
+- set password secret
+- set server database
+- after login create database with name rattingdb

@@ -6,7 +6,5 @@ class NotifyCommand
 {
     public function __construct()
     {
-        
     }
 }
-

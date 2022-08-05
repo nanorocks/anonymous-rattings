@@ -8,7 +8,6 @@ use Slim\Psr7\Response;
 
 class CorsMiddleware
 {
-
     /**
      * CORS detector if needed
      *
@@ -20,9 +19,9 @@ class CorsMiddleware
     {
         $response = $handler->handle($request);
         $existingContent = (string) $response->getBody();
-    
+
         // your code here ...
-    
+
         return $response;
     }
 }

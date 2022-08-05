@@ -22,7 +22,7 @@ class DatabaseProvider
 
         $capsule->addConnection($config['db']);
 
-        $capsule->setEventDispatcher(new Dispatcher(new IlluminateContainer));
+        $capsule->setEventDispatcher(new Dispatcher(new IlluminateContainer()));
 
         $capsule->setAsGlobal();
 
