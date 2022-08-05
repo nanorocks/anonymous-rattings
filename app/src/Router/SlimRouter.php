@@ -21,8 +21,8 @@ class SlimRouter
      */
     public static function handle(SlimApp $app, array $config)
     {
-        $app->get('/', function (Request $request, Response $response, $args) {
-            $response->getBody()->write("SaaS for Rattings powered by Slim PHP v4!");
+        $app->get('/', function (Request $request, Response $response, $args) use ($config) {
+            $response->getBody()->write($config['appName'] . " powered by Slim PHP v4!");
             return $response;
         });
 

@@ -33,6 +33,8 @@ class AppProvider
 
         SlimRouter::handle($app, $config);
 
+        LoggerProvider::handle($container, $config);
+
         $app->addErrorMiddleware($config['show_errors'], $config['show_errors'], $config['show_errors']);
 
         $app->run();

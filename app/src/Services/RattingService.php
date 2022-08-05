@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Exceptions\HttpException;
 use App\Models\Ratting;
+use DI\Container;
 use Rakit\Validation\Validator;
 use Illuminate\Support\Collection;
+use Monolog\Logger;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class RattingService implements IRattingService
@@ -13,9 +15,12 @@ class RattingService implements IRattingService
 
     public Validator $validator;
 
-    public function __construct(Validator $validator)
+    public Logger $logger;
+
+    public function __construct(Validator $validator, Container $container)
     {
         $this->validator = $validator;
+        $this->logger = $container->get('logger');
     }
 
     /**
@@ -59,6 +64,7 @@ class RattingService implements IRattingService
         $ratting = Ratting::where(Ratting::IP, $body[Ratting::IP])->where(Ratting::SLUG, $body[Ratting::SLUG])->first();
 
         if ($ratting !== null) {
+            $this->logger->info('STORE RATTING HttpException ' . HttpException::ALREADY_EXIST . ' ALREADY_EXIST');
             throw HttpException::handle(HttpException::ALREADY_EXIST, $request);
         }
 
@@ -69,6 +75,7 @@ class RattingService implements IRattingService
         ]);
 
         if ($validate->fails()) {
+            $this->logger->warning('STORE RATTING $validate->fails()', $validate->errors()->firstOfAll());
             return new Collection([
                 'rate' => null,
                 'errors' => $validate->errors()->firstOfAll()
@@ -88,7 +95,7 @@ class RattingService implements IRattingService
     public function update(Request $request): ?Collection
     {
 
-        $body = json_decode($request->getBody(), true);
+        $body = json_decode($request->getBody(), true) ?? [];
 
         $validate = $this->validator->validate($body, [
             Ratting::SLUG => 'required',
@@ -97,6 +104,7 @@ class RattingService implements IRattingService
         ]);
 
         if ($validate->fails()) {
+            $this->logger->warning('UPDATE RATTING $validate->fails()', $validate->errors()->firstOfAll());
             return new Collection([
                 'rate' => null,
                 'errors' => $validate->errors()->firstOfAll()
@@ -106,6 +114,7 @@ class RattingService implements IRattingService
         $ratting = Ratting::where(Ratting::IP, $body[Ratting::IP])->where(Ratting::SLUG, $body[Ratting::SLUG])->first();
 
         if ($ratting === null) {
+            $this->logger->info('UPDATE RATTING HttpException ' . HttpException::GONE . ' GONE');
             throw HttpException::handle(HttpException::GONE, $request);
         }
 
@@ -136,6 +145,7 @@ class RattingService implements IRattingService
         $ratting = Ratting::where(Ratting::IP, $body[Ratting::IP])->first();
 
         if ($ratting === null) {
+            $this->logger->info('REMOVE RATTING HttpException ' . HttpException::GONE . ' GONE');
             throw HttpException::handle(HttpException::GONE, $request);
         }
 

@@ -17,7 +17,7 @@ class HttpException
 
     public const SERVER_ERORR = 500;
 
-    public const GONE = 500;
+    public const GONE = 410;
 
     public const ALREADY_EXIST = 409;
 

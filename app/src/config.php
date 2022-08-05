@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'appName' => 'ADD-RATTING-SAAS',
     'show_errors' => 1,
     'db' => [
         'driver' => 'mysql',
@@ -12,5 +13,8 @@ return [
         'collation' => 'utf8_unicode_ci',
         'prefix' => '',
     ],
-    'accessToken' => 'f21a44635709c17ef568f177928565e1'
+    'accessToken' => 'f21a44635709c17ef568f177928565e1',
+    'logger' => [
+        'path' => './slim.log'
+    ]
 ];
