@@ -2,3 +2,4 @@
 /app/vendor
 /app/public/slim.log
 /app/tools/php-cs-fixer/vendor
+/app/.env

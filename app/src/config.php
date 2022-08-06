@@ -1,20 +1,25 @@
 <?php
 
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . './../');
+$dotenv->load();
+
 return [
-    'appName' => 'ADD-RATTING-SAAS',
-    'show_errors' => 1,
+    'appName' => $_ENV['APP_NAME'],
+    'show_errors' => $_ENV['APP_NAME'],
     'db' => [
-        'driver' => 'mysql',
-        'host' => 'database',
-        'database' => 'rattingdb',
-        'username' => 'root',
-        'password' => 'secret',
-        'charset' => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix' => '',
+        'driver' => $_ENV['DB_DRIVE'],
+        'host' => $_ENV['DB_HOST'],
+        'database' => $_ENV['DB_DATABASE'],
+        'username' => $_ENV['DB_USERNAME'],
+        'password' => $_ENV['DB_PASSWORD'],
+        'charset' => $_ENV['DB_CHARSET'],
+        'collation' => $_ENV['DB_COLLECTION'],
+        'prefix' => $_ENV['DB_PREFIX'],
     ],
-    'accessToken' => 'f21a44635709c17ef568f177928565e1',
+    'accessToken' => $_ENV['ACCESS_TOKEN'],
     'logger' => [
-        'path' => './slim.log'
+        'path' => $_ENV['LOGGER_PATH']
     ]
 ];
