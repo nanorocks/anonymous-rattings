@@ -35,7 +35,9 @@ class AppProvider
 
         LoggerProvider::handle($container, $config);
 
-        $app->addErrorMiddleware($config['show_errors'], $config['show_errors'], $config['show_errors']);
+        $errors = !boolval($config['show_errors']);
+
+        $app->addErrorMiddleware($errors, $errors, $errors);
 
         $app->run();
     }
