@@ -24,3 +24,6 @@ Db creating for project
 - set password secret
 - set server database
 - after login create database with name rattingdb
+
+### Postman
+https://www.getpostman.com/collections/85b32d8827c6579bccad
