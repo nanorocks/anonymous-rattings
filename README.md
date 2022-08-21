@@ -1,5 +1,7 @@
 # add-ratting-saas
 
+[![🚀 Deploy ratting service to cPanel](https://github.com/nanorocks/project-ratting-service/actions/workflows/cPanel.yml/badge.svg?branch=main)](https://github.com/nanorocks/project-ratting-service/actions/workflows/cPanel.yml)
+
 ### PHP CS Fixer
 Assuming you installed PHP CS Fixer as instructed above, you can run the following command to fix the files PHP files in the src directory:
 
