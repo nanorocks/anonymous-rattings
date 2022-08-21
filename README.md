@@ -1,4 +1,4 @@
-# project-ratting-service
+# project-rating-service
 
 [![🚀 Deploy ratting service to cPanel](https://github.com/nanorocks/project-ratting-service/actions/workflows/cPanel.yml/badge.svg?branch=main)](https://github.com/nanorocks/project-ratting-service/actions/workflows/cPanel.yml)
 
