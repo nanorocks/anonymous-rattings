@@ -3,7 +3,7 @@
 namespace App\Router;
 
 use App\Middlewares\AuthMiddleware;
-use App\Controllers\RattingController;
+use App\Controllers\RatingController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App as SlimApp;
@@ -48,11 +48,11 @@ class SlimRouter
         });
 
         $app->group('', function () use ($app) {
-            $app->get('/rattings', RattingController::class . ':index');
-            $app->get('/rattings/{slug}', RattingController::class . ':ratting');
-            $app->post('/rattings', RattingController::class . ':store');
-            $app->put('/rattings', RattingController::class . ':update');
-            $app->delete('/rattings/{slug}', RattingController::class . ':remove');
+            $app->get('/ratings', RatingController::class . ':index');
+            $app->get('/ratings/{slug}', RatingController::class . ':rating');
+            $app->post('/ratings', RatingController::class . ':store');
+            $app->put('/ratings', RatingController::class . ':update');
+            $app->delete('/ratings/{slug}', RatingController::class . ':remove');
         })->add(new AuthMiddleware($config));
     }
 }

@@ -2,20 +2,20 @@
 
 namespace App\Services;
 
-use App\Models\Ratting;
+use App\Models\Rating;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-interface IRattingService
+interface IRatingService
 {
     public function index(): Collection;
 
-    public function ratting(Request $request, $args): Ratting;
+    public function rating(Request $request, $args): Rating;
 
     public function store(Request $request): ?Collection;
 
     public function update(Request $request): ?Collection;
 
-    public function remove(Request $request): ?Ratting;
+    public function remove(Request $request): ?Rating;
 }

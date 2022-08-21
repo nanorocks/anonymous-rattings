@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Ratting;
+use App\Models\Rating;
 use App\Providers\DatabaseProvider;
 use DI\Container;
 use Illuminate\Support\Facades\DB;
@@ -19,12 +19,12 @@ $faker = Faker\Factory::create();
 
 for ($i = 0; $i < 50; $i++) {
     $dataset = [
-        Ratting::SLUG => $faker->slug(),
-        Ratting::IP => $faker->ipv4(),
-        Ratting::RATE => $faker->numberBetween(0, 10)
+        Rating::SLUG => $faker->slug(),
+        Rating::IP => $faker->ipv4(),
+        Rating::RATE => $faker->numberBetween(0, 10)
     ];
 
-    $manager::table('rattings')->insert($dataset);
+    $manager::table('ratings')->insert($dataset);
 }
 
 echo "Seeding completed!\n";

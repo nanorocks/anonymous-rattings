@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-class RattingRepository
+class RatingRepository
 {
     
 }

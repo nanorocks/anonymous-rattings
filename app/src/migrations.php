@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Ratting;
+use App\Models\Rating;
 use App\Providers\DatabaseProvider;
 use DI\Container;
 
@@ -14,11 +14,11 @@ DatabaseProvider::handle($container, $config);
 
 $manager = $container->get('orm');
 
-// Ratting
-$manager::schema()->create('rattings', function ($table) {
+// Rating
+$manager::schema()->create('ratings', function ($table) {
     $table->increments('id');
-    $table->string(Ratting::SLUG);
-    $table->integer(Ratting::RATE);
-    $table->string(Ratting::IP);
+    $table->string(Rating::SLUG);
+    $table->integer(Rating::RATE);
+    $table->string(Rating::IP);
     $table->timestamps();
 });

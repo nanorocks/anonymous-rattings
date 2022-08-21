@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Ratting extends Eloquent
+class Rating extends Eloquent
 {
     public const SLUG = 'slug';
 

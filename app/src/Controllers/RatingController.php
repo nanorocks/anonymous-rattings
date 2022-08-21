@@ -3,21 +3,21 @@
 namespace App\Controllers;
 
 use App\Resource\JsonResource;
-use App\Services\RattingService;
+use App\Services\RatingService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class RattingController
+class RatingController
 {
-    public RattingService $rattingService;
+    public RatingService $ratingService;
 
-    public function __construct(RattingService $rattingService)
+    public function __construct(RatingService $ratingService)
     {
-        $this->rattingService = $rattingService;
+        $this->ratingService = $ratingService;
     }
 
     /**
-     * Load all ratting grouped by slug with total ratting
+     * Load all rating grouped by slug with total rating
      *
      * @param Request $request
      * @param Response $response
@@ -26,19 +26,19 @@ class RattingController
      */
     public function index(Request $request, Response $response, $args)
     {
-        return JsonResource::handle($response, $this->rattingService->index());
+        return JsonResource::handle($response, $this->ratingService->index());
     }
 
     /**
-     * Get single ratting group by slag distinct ip and total rate
+     * Get single rating group by slag distinct ip and total rate
      *
      * @param Request $request
      * @param Response $response
      * @return void
      */
-    public function ratting(Request $request, Response $response, $args)
+    public function rating(Request $request, Response $response, $args)
     {
-        return JsonResource::handle($response, $this->rattingService->ratting($request, $args));
+        return JsonResource::handle($response, $this->ratingService->rating($request, $args));
     }
 
     /**
@@ -50,7 +50,7 @@ class RattingController
      */
     public function store(Request $request, Response $response)
     {
-        return JsonResource::handle($response, $this->rattingService->store($request));
+        return JsonResource::handle($response, $this->ratingService->store($request));
     }
 
     /**
@@ -62,11 +62,11 @@ class RattingController
      */
     public function update(Request $request, Response $response)
     {
-        return JsonResource::handle($response, $this->rattingService->update($request));
+        return JsonResource::handle($response, $this->ratingService->update($request));
     }
 
     /**
-     * Remove ratting if slug and ip are same
+     * Remove rating if slug and ip are same
      *
      * @param Request $request
      * @param Response $response
@@ -74,6 +74,6 @@ class RattingController
      */
     public function remove(Request $request, Response $response, $args)
     {
-        return JsonResource::handle($response, $this->rattingService->remove($request, $args));
+        return JsonResource::handle($response, $this->ratingService->remove($request, $args));
     }
 }
