@@ -60,10 +60,10 @@ class RatingService implements IRatingService
     public function store(Request $request): ?Collection
     {
         $body = json_decode($request->getBody(), true);
-
+        
         $rating = Rating::where(Rating::IP, $body[Rating::IP])->where(Rating::SLUG, $body[Rating::SLUG])->first();
-
-        if ($rating !== null) {
+        
+        if ($rating) {
             $this->logger->info('STORE RATING HttpException ' . HttpException::ALREADY_EXIST . ' ALREADY_EXIST');
             throw HttpException::handle(HttpException::ALREADY_EXIST, $request);
         }
@@ -123,11 +123,7 @@ class RatingService implements IRatingService
         $rating->save();
 
         return new Collection([
-            'rate' => Rating::create([
-                Rating::SLUG => $body[Rating::SLUG],
-                Rating::IP => $body[Rating::IP],
-                Rating::RATE => $body[Rating::RATE]
-            ]),
+            'rate' => $rating,
             'errors' => null
         ]);
     }
