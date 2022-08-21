@@ -132,21 +132,36 @@ class RatingService implements IRatingService
      * Remove only existing rating by ip
      *
      * @param Request $request
-     * @return Rating|null
+     * @return Collection|null
      */
-    public function remove(Request $request): ?Rating
+    public function remove(Request $request): ?Collection
     {
         $body = json_decode($request->getBody(), true) ?? [];
 
+        $validate = $this->validator->validate($body, [
+            Rating::IP => 'required|ip',
+        ]);
+
+        if ($validate->fails()) {
+            $this->logger->warning('DELETE RATING $validate->fails()', $validate->errors()->firstOfAll());
+            return new Collection([
+                'rate' => null,
+                'errors' => $validate->errors()->firstOfAll()
+            ]);
+        }
+
         $rating = Rating::where(Rating::IP, $body[Rating::IP])->first();
 
-        if ($rating === null) {
+        if (!$rating) {
             $this->logger->info('REMOVE RATING HttpException ' . HttpException::GONE . ' GONE');
             throw HttpException::handle(HttpException::GONE, $request);
         }
 
         $rating->delete();
 
-        return $rating;
+        return new Collection([
+            'rate' => $rating,
+            'errors' => null
+        ]);
     }
 }

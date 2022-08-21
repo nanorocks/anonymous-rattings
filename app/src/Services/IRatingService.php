@@ -17,5 +17,5 @@ interface IRatingService
 
     public function update(Request $request): ?Collection;
 
-    public function remove(Request $request): ?Rating;
+    public function remove(Request $request): ?Collection;
 }
