@@ -7,6 +7,7 @@ Assuming you installed PHP CS Fixer as instructed above, you can run the followi
 
 $ tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src
 
+
 ### Docker devbox
 The project is build on top of docker devbox so, all you need is to have docker desktop installed on you pc and then you can navigate to root to run: 
 

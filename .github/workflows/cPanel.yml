@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-name: 🚀 Deploy rating service to cPanel
+name: 🚀 Deploy rating service to cPanel cicd
 jobs:
   web-deploy:
     name: 🎉 Deploy
