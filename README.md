@@ -29,3 +29,11 @@ Db creating for project
 
 ### Postman
 https://www.getpostman.com/collections/85b32d8827c6579bccad
+
+### Logger
+
+Logs are available at /slim.log
+
+### Connection
+
+Check /is_connected
