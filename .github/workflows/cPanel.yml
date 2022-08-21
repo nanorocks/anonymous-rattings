@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-name: 🚀 Deploy website to cPanel
+name: 🚀 Deploy ratting service to cPanel
 jobs:
   web-deploy:
     name: 🎉 Deploy
