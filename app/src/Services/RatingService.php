@@ -41,9 +41,9 @@ class RatingService implements IRatingService
      *
      * @param Request $request
      * @param [type] $args
-     * @return Rating
+     * @return Rating|null
      */
-    public function rating(Request $request, $args): Rating
+    public function rating(Request $request, $args): ?Rating
     {
         return Rating::where(Rating::SLUG, $args[Rating::SLUG])->selectRaw('slug, avg(rate) as total, count(slug) as quantity')
             ->groupBy(Rating::SLUG)
@@ -60,9 +60,9 @@ class RatingService implements IRatingService
     public function store(Request $request): ?Collection
     {
         $body = json_decode($request->getBody(), true);
-        
+
         $rating = Rating::where(Rating::IP, $body[Rating::IP])->where(Rating::SLUG, $body[Rating::SLUG])->first();
-        
+
         if ($rating) {
             $this->logger->info('STORE RATING HttpException ' . HttpException::ALREADY_EXIST . ' ALREADY_EXIST');
             throw HttpException::handle(HttpException::ALREADY_EXIST, $request);
@@ -110,7 +110,7 @@ class RatingService implements IRatingService
                 'errors' => $validate->errors()->firstOfAll()
             ]);
         }
-        
+
         $rating = Rating::where(Rating::IP, $body[Rating::IP])->where(Rating::SLUG, $body[Rating::SLUG])->first();
 
         if ($rating === null) {

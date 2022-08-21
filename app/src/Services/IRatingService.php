@@ -11,7 +11,7 @@ interface IRatingService
 {
     public function index(): Collection;
 
-    public function rating(Request $request, $args): Rating;
+    public function rating(Request $request, $args): ?Rating;
 
     public function store(Request $request): ?Collection;
 
