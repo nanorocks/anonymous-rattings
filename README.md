@@ -1,4 +1,4 @@
-# project-rating-service
+# rating-service
 
 [![🚀 Deploy rating service to cPanel](https://github.com/nanorocks/project-rating-service/actions/workflows/cPanel.yml/badge.svg?branch=main)](https://github.com/nanorocks/project-rating-service/actions/workflows/cPanel.yml)
 
